@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Usaha - Koperasi Merah Putih</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        /* --- GAYA DASAR --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #f4f4f4; color: #333; line-height: 1.6; }
+        p { margin-bottom: 15px; }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            background-color: #fff; display: flex; justify-content: space-between; align-items: center;
+            padding: 10px 5%; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+        }
+        .logo { display: flex; align-items: center; gap: 10px; font-weight: bold; color: #D32F2F; line-height: 1.2; }
+        .logo span { color: #2E7D32; }
+        .logo-img { height: 40px; width: auto; }
+        .menu a { text-decoration: none; color: #333; margin-left: 20px; font-weight: 500; transition: 0.3s; }
+        .menu a:hover { color: #D32F2F; }
+
+        /* --- CONTAINER (ISI HALAMAN) --- */
+        .container {
+            max-width: 1000px; 
+            margin: 100px auto 50px; 
+            background: white;
+            padding: 40px; 
+            border-radius: 10px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 { 
+            color: #2E7D32; 
+            margin-bottom: 20px; 
+            border-bottom: 3px solid #D32F2F; 
+            padding-bottom: 10px; 
+            text-align: center; 
+            font-size: 2rem;
+        }
+
+        /* --- GRID UNIT USAHA --- */
+        .unit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .unit-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            border-top: 5px solid; /* Placeholder for color coding */
+        }
+
+        .unit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .unit-icon {
+            font-size: 3rem;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .unit-info {
+            padding: 15px;
+        }
+
+        .unit-info h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #333;
+            border: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        .unit-info p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            min-height: 50px; /* Menjaga tinggi deskripsi agar seragam */
+        }
+
+        .unit-link {
+            display: inline-block;
+            background-color: #D32F2F;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .unit-link:hover {
+            background-color: #a00;
+        }
+
+        /* Color Coding */
+        .card-lpg { border-color: #FF9800; }
+        .card-lpg .unit-icon { color: #FF9800; }
+        
+        .card-tani { border-color: #4CAF50; }
+        .card-tani .unit-icon { color: #4CAF50; }
+        
+        .card-ppob { border-color: #03A9F4; }
+        .card-ppob .unit-icon { color: #03A9F4; }
+
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; gap: 10px; padding: 15px; }
+            .menu { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+            .container { padding: 20px; margin-top: 80px; }
+            .unit-grid { grid-template-columns: 1fr; }
+        }
+
+        /* --- CSS FOOTER --- */
+        .footer { background-color: #2c3e50; color: #ecf0f1; padding: 40px 5%; margin-top: 50px; font-size: 0.9rem; }
+        .footer-content { display: flex; justify-content: space-between; max-width: 1100px; margin: 0 auto; flex-wrap: wrap; }
+        .footer-section { width: 30%; min-width: 250px; margin-bottom: 20px; }
+        .footer-section h4 { color: #D32F2F; margin-bottom: 15px; border-bottom: 1px solid #4a6d8c; padding-bottom: 5px; }
+        .footer-section a { color: #ecf0f1; text-decoration: none; display: block; margin-bottom: 5px; transition: color 0.3s; }
+        .footer-section a:hover { color: #2E7D32; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #4a6d8c; margin-top: 20px; font-size: 0.8rem; }
+        @media (max-width: 768px) { .footer-content { flex-direction: column; } .footer-section { width: 100%; text-align: center; } }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <img src="logo-koperasi.png" alt="Logo" class="logo-img">
+            Koperasi Desa Merah Putih <span>Lamunti Permai</span>
+        </div>
+        <div class="menu">
+            <a href="index.html">Beranda</a>
+            <a href="data-anggota.html">Data Anggota</a>
+            <a href="unit-usaha.html" style="color: #D32F2F;">Unit Usaha</a>
+            <a href="tentang-kami.html">Tentang Kami</a>
+            <a href="galeri.html">Galeri</a>
+            <a href="kontak.html">Kontak</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>🏬 Unit Usaha Koperasi</h1>
+        <p style="text-align: center; margin-bottom: 30px; color: #555;">Koperasi Desa Merah Putih mengelola tiga unit usaha utama yang bertujuan untuk melayani kebutuhan pokok dan mendukung ekonomi anggota di Lamunti Permai.</p>
+
+        <div class="unit-grid">
+            
+            <div class="unit-card card-lpg">
+                <div class="unit-icon">🔥</div>
+                <div class="unit-info">
+                    <h2>Gerai Gas LPG</h2>
+                    <p>Menyediakan Gas LPG 3 Kg Subsidi dan Non-Subsidi untuk menjamin ketersediaan energi rumah tangga dengan harga HET.</p>
+                    <a href="gerai-lpg.html" class="unit-link">Lihat Detail</a>
+                </div>
+            </div>
+
+            <div class="unit-card card-tani">
+                <div class="unit-icon">🌾</div>
+                <div class="unit-info">
+                    <h2>Toko Tani & Sembako</h2>
+                    <p>Menjual sarana produksi pertanian (pupuk, benih) dan kebutuhan pokok harian (sembako) dengan harga kompetitif.</p>
+                    <a href="toko-tani.html" class="unit-link">Lihat Detail</a>
+                </div>
+            </div>
+
+            <div class="unit-card card-ppob">
+                <div class="unit-icon">💳</div>
+                <div class="unit-info">
+                    <h2>PPOB & Jasa Keuangan</h2>
+                    <p>Layanan pembayaran tagihan online (listrik, BPJS, PDAM) dan jasa transfer uang tunai untuk kemudahan transaksi anggota.</p>
+                    <a href="ppob-jasa.html" class="unit-link">Lihat Detail</a>
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Hubungi Kami</h4>
+                <p><strong>Alamat:</strong> Jl. Utama Desa, Lamunti Permai, Kapuas.</p>
+                <p><strong>Telp:</strong> (0513) 7xxxxxx</p>
+                <p><strong>Email:</strong> koperasimerahputih@desa.id</p>
+                <p><strong>Jam Operasional:</strong> Senin-Jumat (08:00 - 15:00)</p>
+            </div>
+            <div class="footer-section">
+                <h4>Navigasi</h4>
+                <a href="index.html">Beranda</a>
+                <a href="data-anggota.html">Data Anggota</a>
+                <a href="unit-usaha.html">Unit Usaha</a>
+                <a href="tentang-kami.html">Tentang Kami</a>
+                <a href="galeri.html">Galeri Kegiatan</a>
+                <a href="kontak.html">Kontak Kami</a>
+            </div>
+            <div class="footer-section">
+                <h4>Legalitas & Prinsip</h4>
+                <p>Badan Hukum No: 123/BH/KOP.KAB/V/2005.</p>
+                <p>Kami menjunjung tinggi prinsip Koperasi: Kekeluargaan, Transparansi, dan Akuntabilitas demi kesejahteraan bersama.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 Koperasi Desa Merah Putih Lamunti Permai. Hak Cipta Dilindungi.
+        </div>
+    </footer>
+
+</body>
+</html>

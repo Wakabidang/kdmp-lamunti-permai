@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak Kami - Koperasi Merah Putih</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        /* --- GAYA DASAR --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #f4f4f4; color: #333; line-height: 1.6; }
+        p { margin-bottom: 15px; }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            background-color: #fff; display: flex; justify-content: space-between; align-items: center;
+            padding: 10px 5%; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+        }
+        .logo { display: flex; align-items: center; gap: 10px; font-weight: bold; color: #D32F2F; line-height: 1.2; }
+        .logo span { color: #2E7D32; }
+        .logo-img { height: 40px; width: auto; }
+        .menu a { text-decoration: none; color: #333; margin-left: 20px; font-weight: 500; transition: 0.3s; }
+        .menu a:hover { color: #D32F2F; }
+
+        /* --- 3. HERO SECTION --- */
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('photo-1500382017468-9049fed747ef.jpg?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover; background-position: center; height: 100vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; color: white; padding: 0 20px; margin-top: 0;
+        }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .hero p { font-size: 1.2rem; margin-bottom: 30px; max-width: 700px; }
+        .btn-container { display: flex; gap: 15px; }
+        .btn { padding: 12px 30px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        .btn-primary { background-color: #D32F2F; color: white; border: 2px solid #D32F2F; }
+        .btn-primary:hover { background-color: #b71c1c; border-color: #b71c1c; }
+        .btn-secondary { background-color: transparent; color: white; border: 2px solid white; }
+        .btn-secondary:hover { background-color: white; color: #D32F2F; }
+
+        /* --- PEMBERITAHUAN LAPORAN --- */
+        .announcement-section { padding: 30px 5%; }
+        .announcement-box {
+            background-color: #fffde7; border: 2px solid #ffc107; padding: 25px;
+            border-radius: 8px; text-align: center; max-width: 800px; margin: 0 auto;
+        }
+        .announcement-box h3 { color: #D32F2F; margin-bottom: 10px; font-size: 1.5rem; }
+        .announcement-box .btn-download {
+            display: inline-block; background-color: #2E7D32; color: white; text-decoration: none;
+            padding: 10px 20px; border-radius: 5px; margin-top: 15px; font-weight: bold; transition: 0.3s;
+        }
+        .announcement-box .btn-download:hover { background-color: #1b5e20; }
+        .announcement-box p.note { font-style: italic; color: #666; font-size: 0.9em; margin-top: 15px; }
+
+        /* --- SECTION UMUM --- */
+        .section-padding { padding: 80px 5%; }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { font-size: 2.5rem; color: #2E7D32; margin-bottom: 10px; }
+        .section-title p { color: #666; }
+
+        /* --- FITUR --- */
+        .features-container { display: flex; justify-content: space-between; gap: 30px; }
+        .feature-card {
+            background: white; padding: 30px; border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center; flex: 1;
+            transition: transform 0.3s; border-top: 5px solid #D32F2F;
+        }
+        .feature-card:hover { transform: translateY(-10px); }
+        .icon-emoji { font-size: 3rem; margin-bottom: 15px; display: block; }
+
+        /* --- UNIT USAHA --- */
+        .bg-grey { background-color: #f9f9f9; } 
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .service-item { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.1); }
+        .service-img {
+            height: 200px; background-color: #ddd; display: flex; align-items: center; justify-content: center;
+            background-size: cover; background-position: center;
+        }
+        .service-content { padding: 20px; }
+        .service-content h3 { color: #D32F2F; margin-bottom: 10px; }
+        .service-content ul { padding-left: 20px; margin-bottom: 15px; color: #555; font-size: 0.9rem; }
+
+        /* --- FORMULIR --- */
+        .form-section {
+            background-color: white; max-width: 800px; margin: 0 auto; padding: 40px;
+            border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #333; }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px; font-size: 1rem;
+        }
+        .btn-submit {
+            width: 100%; background-color: #2E7D32; color: white; border: none; padding: 15px;
+            font-size: 1.1rem; font-weight: bold; border-radius: 5px; cursor: pointer; transition: 0.3s;
+        }
+        .btn-submit:hover { background-color: #1b5e20; }
+
+        /* --- FOOTER --- */
+        footer { background-color: #2c3e50; color: #ecf0f1; padding: 40px 5%; margin-top: 50px; font-size: 0.9rem; }
+        .footer-content { display: flex; justify-content: space-between; max-width: 1100px; margin: 0 auto; flex-wrap: wrap; }
+        .footer-section { width: 30%; min-width: 250px; margin-bottom: 20px; }
+        .footer-section h4 { color: #D32F2F; margin-bottom: 15px; border-bottom: 1px solid #4a6d8c; padding-bottom: 5px; }
+        .footer-section a { color: #ecf0f1; text-decoration: none; display: block; margin-bottom: 5px; transition: color 0.3s; }
+        .footer-section a:hover { color: #2E7D32; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #4a6d8c; margin-top: 20px; font-size: 0.8rem; }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .navbar { flex-direction: column; gap: 10px; }
+            .features-container { flex-direction: column; }
+            .footer-content { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <img src="logo-koperasi.png" alt="Logo" class="logo-img">
+            Koperasi Desa Merah Putih <span>Lamunti Permai</span>
+        </div>
+        <div class="menu">
+            <a href="#">Beranda</a>
+            <a href="data-anggota.html">Data Anggota</a>
+            <a href="unit-usaha.html">Unit Usaha</a>
+            <a href="tentang-kami.html">Tentang Kami</a>
+            <a href="galeri.html">Galeri</a>            
+            <a href="kontak.html">Kontak</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Koperasi Desa Merah Putih Lamunti Permai</h1>
+        <p>Bersama membangun kesejahteraan warga Desa Lamunti Permai yang mandiri dan berdikari.</p>
+        <div class="btn-container">
+            <a href="#announcement-section" class="btn btn-primary">Laporan Anggota</a>
+            <a href="#layanan" class="btn btn-secondary">Lihat Layanan</a>
+        </div>
+    </section>
+
+    <section id="announcement-section" class="announcement-section">
+        <div class="announcement-box">
+            <h3>📢 Laporan Keuangan Bulanan Anggota Telah Tersedia</h3>
+            <p>Kami menjamin transparansi penuh. Anggota dapat mengunduh Laporan Realisasi Keuangan bulan **Juni 2025** di bawah ini.</p>
+            <a href="laporan_bulanan_juni_2025.pdf" class="btn-download" target="_blank">Unduh Laporan (Juni 2025)</a>
+            <p class="note">*File dilindungi dengan kata sandi. Silakan gunakan NOMOR ANGGOTA atau PASSWORD KHUSUS yang diumumkan terpisah.</p>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="section-title">
+            <h2>Mengapa Bergabung?</h2>
+            <p>Keuntungan menjadi anggota Koperasi Merah Putih</p>
+        </div>
+        <div class="features-container">
+            <div class="feature-card">
+                <span class="icon-emoji">⚖️</span>
+                <h3>Badan Hukum Resmi</h3>
+                <p>Terdaftar resmi di Kemenkumham. Dana Anda aman dan dikelola secara profesional.</p>
+            </div>
+            <div class="feature-card">
+                <span class="icon-emoji">📈</span>
+                <h3>SHU Kompetitif</h3>
+                <p>Sisa Hasil Usaha dibagikan secara adil dan transparan kepada seluruh anggota setiap tahun.</p>
+            </div>
+            <div class="feature-card">
+                <span class="icon-emoji">🤝</span>
+                <h3>Azas Kekeluargaan</h3>
+                <p>Mengutamakan gotong royong. Dari anggota, oleh anggota, untuk anggota.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding bg-grey" id="layanan">
+        <div class="section-title">
+            <h2>Unit Usaha Kami</h2>
+            <p>Layanan yang kami sediakan untuk mendukung ekonomi desa</p>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-item">
+                <div class="service-img" style="background-image: url('photo-gas-elpiji-1253247340.jpg?auto=format&fit=crop&w=500&q=60');"></div>
+                <div class="service-content">
+                    <h3>Gerai Gas LPG</h3>
+                    <p>Pangkalan resmi penyalur Gas LPG untuk kebutuhan rumah tangga dan UMKM.</p>
+                    <ul>
+                        <li>LPG 3Kg (Subsidi)</li>
+                        <li>Bright Gas 5.5Kg</li>
+                        <li>Harga Sesuai HET</li>
+                    </ul>
+                    <a href="gerai-lpg.html" style="color: #2E7D32; font-weight: bold; text-decoration: none;">Lihat Stok & Harga →</a>
+                </div>
+            </div>
+
+            <div class="service-item">
+                <div class="service-img" style="background-image: url('photo-1542838132-92c53300491e.jpg?auto=format&fit=crop&w=500&q=60');"></div>
+                <div class="service-content">
+                    <h3>Toko Tani & Sembako</h3>
+                    <p>Menyediakan kebutuhan pokok dan pertanian dengan harga terjangkau.</p>
+                    <ul>
+                        <li>Pupuk & Bibit Unggul</li>
+                        <li>Sembako Murah</li>
+                        <li>Bisa bayar saat panen (Yarnen)</li>
+                    </ul>
+                    <a href="toko-tani.html" style="color: #2E7D32; font-weight: bold; text-decoration: none;">Selengkapnya →</a>
+                </div>
+            </div>
+
+            <div class="service-item">
+                <div class="service-img" style="background-image: url('photo-001378300_1708076321.jpg?auto=format&fit=crop&w=500&q=60');"></div>
+                <div class="service-content">
+                    <h3>PPOB & Jasa</h3>
+                    <p>Kemudahan pembayaran tagihan tanpa harus pergi jauh ke kota.</p>
+                    <ul>
+                        <li>Token Listrik & Pulsa</li>
+                        <li>Pembayaran BPJS</li>
+                        <li>Transfer Uang</li>
+                    </ul>
+                    <a href="ppob-jasa.html" style="color: #2E7D32; font-weight: bold; text-decoration: none;">Selengkapnya →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="daftar">
+        <div class="section-title">
+            <h2>Gabung Menjadi Anggota</h2>
+            <p>Mari bersinergi membangun ekonomi desa. Isi data di bawah ini.</p>
+        </div>
+
+        <div class="form-section">
+            <form onsubmit="kirimPendaftaranWA(); return false;">
+                
+                <div class="form-group">
+                    <label>Nama Lengkap (Sesuai KTP)</label>
+                    <input type="text" id="daftar_nama" placeholder="Contoh: Budi Santoso" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Nomor Induk Kependudukan (NIK)</label>
+                    <input type="number" id="daftar_nik" placeholder="16 digit NIK" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Nomor WhatsApp</label>
+                    <input type="tel" id="daftar_wa" placeholder="Contoh: 08123456789" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Jenis Keanggotaan</label>
+                    <select id="daftar_jenis">
+                        <option value="Anggota Biasa">Anggota Biasa (Warga Desa)</option>
+                        <option value="Anggota Luar Biasa">Anggota Luar Biasa (Non-Warga)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Alamat Lengkap</label>
+                    <textarea id="daftar_alamat" rows="3" placeholder="RT/RW, Dusun..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Kirim Pendaftaran</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        function kirimPendaftaranWA() {
+            // 1. PENGATURAN NOMOR ADMIN (GANTI DENGAN NOMOR ASLI)
+            var nomorAdmin = "6281234567890"; // Gunakan format 62 di depan (bukan 0)
+
+            // 2. AMBIL DATA DARI FORMULIR
+            var nama = document.getElementById("daftar_nama").value;
+            var nik = document.getElementById("daftar_nik").value;
+            var wa = document.getElementById("daftar_wa").value;
+            var jenis = document.getElementById("daftar_jenis").value;
+            var alamat = document.getElementById("daftar_alamat").value;
+
+            // 3. BUAT FORMAT PESAN WHATSAPP YANG RAPI
+            // %0A adalah kode untuk Enter/Baris Baru
+            // %3A adalah kode untuk titik dua (:)
+            var pesan = "Halo Admin Koperasi," + "%0A" +
+                        "Saya ingin mendaftar menjadi anggota baru." + "%0A" + "%0A" +
+                        "*DATA PENDAFTARAN:*" + "%0A" +
+                        "----------------------------------" + "%0A" +
+                        "👤 *Nama:* " + nama + "%0A" +
+                        "🆔 *NIK:* " + nik + "%0A" +
+                        "📱 *No WA:* " + wa + "%0A" +
+                        "🏷️ *Jenis:* " + jenis + "%0A" +
+                        "🏠 *Alamat:* " + alamat + "%0A" +
+                        "----------------------------------" + "%0A" + "%0A" +
+                        "Mohon infonya untuk syarat selanjutnya. Terima kasih.";
+
+            // 4. BUKA APLIKASI WHATSAPP
+            var linkWA = "https://wa.me/" + nomorAdmin + "?text=" + pesan;
+            window.open(linkWA, '_blank');
+        }
+    </script>>
+        </div>
+    </section>
+   
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Hubungi Kami</h4>
+                <p><strong>Alamat:</strong> Jl. Utama Desa, Lamunti Permai, Kapuas.</p>
+                <p><strong>Telp:</strong> (0513) 7xxxxxx</p>
+                <p><strong>Email:</strong> koperasimerahputih@desa.id</p>
+                <p><strong>Jam Operasional:</strong> Senin-Jumat (08:00 - 15:00)</p>
+            </div>
+            <div class="footer-section">
+                <h4>Navigasi</h4>
+                <a href="index.html">Beranda</a>
+                <a href="data-anggota.html">Data Anggota</a>
+                <a href="unit-usaha.html">Unit Usaha</a>
+                <a href="tentang-kami.html">Tentang Kami</a>
+                <a href="galeri.html">Galeri Kegiatan</a>
+                <a href="kontak.html">Kontak Kami</a>
+            </div>
+            <div class="footer-section">
+                <h4>Legalitas & Prinsip</h4>
+                <p>Badan Hukum No: 123/BH/KOP.KAB/V/2005.</p>
+                <p>Kami menjunjung tinggi prinsip Koperasi: Kekeluargaan, Transparansi, dan Akuntabilitas demi kesejahteraan bersama.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 Koperasi Desa Merah Putih Lamunti Permai. Hak Cipta Dilindungi.
+        </div>
+    </footer>
+
+</body>
+</html>
