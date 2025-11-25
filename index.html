@@ -24,22 +24,20 @@
         .menu a:hover { color: #D32F2F; }
 
         /* --- MENU TOGGLE (HAMBURGER) BARU */
-.menu-toggle {
-    display: none; /* Sembunyikan di desktop */
-    font-size: 2rem;
-    cursor: pointer;
-    color: #D32F2F;
-    order: 2;
-    transition: transform 0.3s ease; /* Tambahkan transisi untuk animasi */
-}
-
-/* KELAS BARU UNTUK ANIMASI IKON */
-.menu-toggle.open {
-    /* Putar ikon 90 derajat saat menu terbuka */
-    transform: rotate(90deg); 
-    color: #2E7D32; /* Ubah warna saat terbuka (opsional) */
-}
-/* ... kode CSS lainnya ... */
+        .menu-toggle {
+            display: none; /* Sembunyikan di desktop */
+            font-size: 2rem;
+            cursor: pointer;
+            color: #D32F2F;
+            order: 2;
+            transition: transform 0.3s ease; /* Tambahkan transisi untuk animasi */
+        }
+        /* KELAS BARU UNTUK ANIMASI IKON */
+        .menu-toggle.open {
+            /* Putar ikon 90 derajat saat menu terbuka */
+            transform: rotate(90deg); 
+            color: #2E7D32; /* Ubah warna saat terbuka (opsional) */
+        }
         
         /* --- 3. HERO SECTION --- */
         .hero {
@@ -48,7 +46,24 @@
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             text-align: center; color: white; padding: 0 20px; margin-top: 0;
         }
-        .hero h1 { font-size: 3.5rem; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .hero h1 { 
+            font-size: 3.5rem; 
+            margin-bottom: 10px; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5); 
+            /* Tambahan untuk logo di H1 */
+            display: flex; /* Gunakan flexbox untuk menata logo dan teks */
+            flex-direction: column; /* Tata item secara vertikal */
+            align-items: center; /* Pusatkan item secara horizontal */
+            gap: 15px; /* Jarak antara logo dan teks */
+        }
+
+        /* Gaya untuk logo di dalam H1 */
+        .hero h1 .hero-logo {
+            width: 120px; /* Ukuran logo */
+            height: auto;
+            margin-bottom: 0; /* Pastikan tidak ada margin tambahan di bawah logo */
+        }
+        
         .hero p { font-size: 1.2rem; margin-bottom: 30px; max-width: 700px; }
         .btn-container { display: flex; gap: 15px; }
         .btn { padding: 12px 30px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; }
@@ -126,77 +141,82 @@
         }
         
         @media (max-width: 768px) {
-    .hero h1 { font-size: 2rem; }
-    .hero p { font-size: 1rem; }
-    .btn-container { flex-direction: column; gap: 10px; }
-    .btn { width: 100%; }
-    .section-padding { padding: 50px 5%; }
-    .section-title h2 { font-size: 2rem; }
-    .features-container { flex-direction: column; }
-    .service-item { flex-direction: column; }
-    .service-img, .service-content { width: 100%; height: auto; }
-    .service-img { height: 150px; }
-    .service-content { padding: 15px; }
+            .hero h1 { 
+                font-size: 2rem; 
+                gap: 10px; /* Sesuaikan jarak antar logo dan teks di HP */
+            }
+            .hero h1 .hero-logo {
+                width: 90px; /* Ukuran logo lebih kecil di HP */
+            }
+            .hero p { font-size: 1rem; }
+            .btn-container { flex-direction: column; gap: 10px; }
+            .btn { width: 100%; }
+            .section-padding { padding: 50px 5%; }
+            .section-title h2 { font-size: 2rem; }
+            .features-container { flex-direction: column; }
+            .service-item { flex-direction: column; }
+            .service-img, .service-content { width: 100%; height: auto; }
+            .service-img { height: 150px; }
+            .service-content { padding: 15px; }
 
-    /* START PERUBAHAN MENU HAMBURGER */
-    .navbar { flex-direction: row;  justify-content: space-between; }
-    .menu-toggle { display: block; /* Tampilkan Tombol Hamburger */
-    }
-    .menu { 
-        display: none; /* SEMBUNYIKAN MENU SECARA DEFAULT */
-        flex-direction: column; 
-        width: 100%;
-        background-color: #fff;
-        box-shadow: 0 5px 5px rgba(0,0,0,0.05);
-        position: absolute;
-        top: 60px; /* Jarak dari Navbar */
-        left: 0;
-        padding: 10px 0;
-    }
-    .menu a { margin: 0; padding: 10px 20px; border-bottom: 1px solid #eee; color: #333; /* Pastikan warna teks menu di HP */
-    }
-    .menu a:last-child { border-bottom: none; }
-    /* Kelas ini yang akan memunculkan menu */
-    .menu.active { display: flex; }
-    /* END PERUBAHAN MENU HAMBURGER */
-    
-    /* ==================== FOOTER RESPONSIVE FIX BARU (Opsi 1) ==================== */
-    
-    /* FIX: Paksa kolom ke bawah di HP (tetap) */
-    .footer-content { 
-        flex-direction: column; 
-    }
-    
-    /* FIX: Rata tengah semua konten di HP (tetap) */
-    .footer-section { 
-        width: 100%; 
-        text-align: center; 
-    }
+            /* START PERUBAHAN MENU HAMBURGER */
+            .navbar { flex-direction: row;  justify-content: space-between; }
+            .menu-toggle { display: block; /* Tampilkan Tombol Hamburger */
+            }
+            .menu { 
+                display: none; /* SEMBUNYIKAN MENU SECARA DEFAULT */
+                flex-direction: column; 
+                width: 100%;
+                background-color: #fff;
+                box-shadow: 0 5px 5px rgba(0,0,0,0.05);
+                position: absolute;
+                top: 60px; /* Jarak dari Navbar */
+                left: 0;
+                padding: 10px 0;
+            }
+            .menu a { margin: 0; padding: 10px 20px; border-bottom: 1px solid #eee; color: #333; /* Pastikan warna teks menu di HP */
+            }
+            .menu a:last-child { border-bottom: none; }
+            /* Kelas ini yang akan memunculkan menu */
+            .menu.active { display: flex; }
+            /* END PERUBAHAN MENU HAMBURGER */
+            
+            /* ==================== FOOTER RESPONSIVE FIX BARU (Opsi 1) ==================== */
+            
+            /* FIX: Paksa kolom ke bawah di HP (tetap) */
+            .footer-content { 
+                flex-direction: column; 
+            }
+            
+            /* FIX: Rata tengah semua konten di HP (tetap) */
+            .footer-section { 
+                width: 100%; 
+                text-align: center; 
+            }
 
-    /* Targetkan bagian Navigasi (bagian kedua di HTML) */
-    .footer-section:nth-child(2) { 
-        padding-top: 10px; /* Sedikit jarak dari bagian atas */
-        padding-bottom: 10px;
-    }
+            /* Targetkan bagian Navigasi (bagian kedua di HTML) */
+            .footer-section:nth-child(2) { 
+                padding-top: 10px; /* Sedikit jarak dari bagian atas */
+                padding-bottom: 10px;
+            }
 
-    /* Terapkan tampilan horizontal ke tautan navigasi */
-    .footer-section:nth-child(2) a {
-        display: inline-block; /* Mengubah dari block menjadi inline-block agar bersebelahan */
-        margin: 5px 8px; /* Atur jarak antar tautan */
-        width: auto; /* Lebar sesuai konten */
-        /* Tambahkan garis pemisah vertikal opsional */
-        border-right: 1px solid #4a6d8c; 
-        padding-right: 8px;
-    }
-    
-    /* Hapus garis pemisah di tautan terakhir */
-    .footer-section:nth-child(2) a:last-child {
-        border-right: none;
-        padding-right: 0;
-    }
-    /* ==================== END FOOTER RESPONSIVE FIX BARU (Opsi 1) ==================== */
-}
-
+            /* Terapkan tampilan horizontal ke tautan navigasi */
+            .footer-section:nth-child(2) a {
+                display: inline-block; /* Mengubah dari block menjadi inline-block agar bersebelahan */
+                margin: 5px 8px; /* Atur jarak antar tautan */
+                width: auto; /* Lebar sesuai konten */
+                /* Tambahkan garis pemisah vertikal opsional */
+                border-right: 1px solid #4a6d8c; 
+                padding-right: 8px;
+            }
+            
+            /* Hapus garis pemisah di tautan terakhir */
+            .footer-section:nth-child(2) a:last-child {
+                border-right: none;
+                padding-right: 0;
+            }
+            /* ==================== END FOOTER RESPONSIVE FIX BARU (Opsi 1) ==================== */
+        }
     </style>
 </head>
 <body>
@@ -209,7 +229,7 @@
         <div class="menu-toggle" id="menuToggle">☰</div>  
         <div class="menu" id="mainMenu">                 
             <a href="#" style="color: #D32F2F;">Beranda</a>  
-            <a href="data-anggota.html">Data Anggota</a>
+            <a href="data-anggota.html">Keanggotaan</a>
             <a href="unit-usaha.html">Unit Usaha</a>
             <a href="tentang-kami.html">Tentang Kami</a>
             <a href="galeri.html">Galeri</a>            
@@ -218,20 +238,23 @@
     </nav>
 
     <section class="hero">
-        <h1>Koperasi Desa Merah Putih Lamunti Permai</h1>
+        <h1>
+            <img src="logo-kdmp.png" alt="Logo Koperasi" class="hero-logo">
+            Koperasi Desa Merah Putih Lamunti Permai
+        </h1>
         <p>Bersama membangun kesejahteraan warga Desa Lamunti Permai yang mandiri dan berdikari.</p>
         <div class="btn-container">
-            <a href="#announcement-section" class="btn btn-primary">Laporan Anggota</a>
+            <a href="#announcement-section" class="btn btn-primary">Laporan Keuangan</a>
             <a href="#layanan" class="btn btn-secondary">Lihat Layanan</a>
         </div>
     </section>
 
     <section id="announcement-section" class="announcement-section">
         <div class="announcement-box">
-            <h3>📢 Laporan Keuangan Bulanan Anggota Telah Tersedia</h3>
+            <h3>📢 Laporan Keuangan Bulanan Koperasi Telah Tersedia</h3>
             <p>Kami menjamin transparansi penuh. Anggota dapat mengunduh Laporan Realisasi Keuangan bulan **Juni 2025** di bawah ini.</p>
             <a href="laporan_bulanan_juni_2025.pdf" class="btn-download" target="_blank">Unduh Laporan (Juni 2025)</a>
-            <p class="note">*File dilindungi dengan kata sandi. Silakan gunakan NOMOR ANGGOTA atau PASSWORD KHUSUS yang diumumkan terpisah.</p>
+            <p class="note">*File dilindungi dengan kata sandang. Silakan gunakan PASSWORD KHUSUS yang diumumkan terpisah.</p>
         </div>
     </section>
 
@@ -422,7 +445,7 @@
             <div class="footer-section">
                 <h4>Navigasi</h4>
                 <a href="index.html">Beranda</a>
-                <a href="data-anggota.html">Data Anggota</a>
+                <a href="data-anggota.html">Keanggotaan</a>
                 <a href="unit-usaha.html">Unit Usaha</a>
                 <a href="tentang-kami.html">Tentang Kami</a>
                 <a href="galeri.html">Galeri Kegiatan</a>
@@ -430,8 +453,8 @@
             </div>
             <div class="footer-section">
                 <h4>Legalitas & Prinsip</h4>
-                <p>Badan Hukum No: 123/BH/KOP.KAB/V/2005.</p>
-                <p>Kami menjunjung tinggi prinsip Koperasi: Kekeluargaan, Transparansi, dan Akuntabilitas demi kesejahteraan bersama.</p>
+                <p>Badan Hukum No: AHU-0013893.AH.01.29.TAHUN 2025.</p>
+                <p>Kami menjunjung tinggi prinsip Koperasi: <strong>Kekeluargaan</strong>, <strong>Transparansi</strong>, dan <strong>Akuntabilitas</strong> demi kesejahteraan bersama.</p>
             </div>
         </div>
         <div class="footer-bottom">
