@@ -102,19 +102,11 @@
             
         /* --- 3. HERO SECTION --- */
         .hero {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('index/photo1b.jpg?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('index/photo1a.jpg?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
             background-size: cover; background-position: center; height: 100vh;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             text-align: center; color: white; padding: 0 20px; margin-top: 0;
         }
-
-        .hero-logo {
-            height: 80px; /* Ukuran lebih besar dari logo navbar */
-            width: auto;
-            margin-bottom: 20px; /* Jarak antara logo dan judul */
-            filter: drop-shadow(0 0 5px rgba(0,0,0,0.5)); /* Efek bayangan agar terlihat di latar belakang gambar */
-        }
-
         .hero h1 { font-size: 3.5rem; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
         .hero p { font-size: 1.2rem; margin-bottom: 30px; max-width: 700px; }
         .btn-container { display: flex; gap: 15px; }
@@ -190,9 +182,6 @@
         
         @media (max-width: 768px) {
             /* ... mobile styles lainnya ... */
-            .hero-logo {
-                height: 60px; /* Sesuaikan ukuran logo di mobile */
-            }
             .hero h1 { font-size: 2rem; }
             .hero p { font-size: 1rem; }
             .btn-container { flex-direction: column; gap: 10px; }
@@ -307,7 +296,6 @@
         </nav>
 
     <section class="hero">
-        <img src="logo-kdmp.png" alt="Logo Koperasi" class="hero-logo">
         <h1>Koperasi Desa Merah Putih Lamunti Permai</h1>
         <p>Bersama membangun kesejahteraan warga Desa Lamunti Permai yang mandiri dan berdikari.</p>
         <div class="btn-container">

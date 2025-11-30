@@ -21,8 +21,8 @@
         .logo span { color: #2E7D32; }
         .logo-img { height: 40px; width: auto; }
         .menu a { text-decoration: none; color: #333; margin-left: 20px; font-weight: 500; transition: 0.3s; }
-        .menu a:hover { color: #D32F2F; }
-
+        .menu a:hover { color: #D32F2F; }        
+ 
         /* --- MENU TOGGLE (HAMBURGER) BARU */
         .menu-toggle {
             display: none; /* Sembunyikan di desktop */
@@ -88,27 +88,83 @@
         }
         .info-card ul { list-style-type: disc; margin-left: 25px; }
 
-        /* --- AKSES DATA --- */
+        /* --- AKSES DATA (MODIFIKASI UNTUK STATIS) --- */
         .data-access {
             text-align: center;
             padding: 30px;
-            background: #ffe6e6; 
-            border: 2px dashed #D32F2F;
+            background: #e6f7ff; /* Warna latar belakang baru untuk data statis */
+            border: 2px dashed #2E7D32; /* Border baru */
             border-radius: 8px;
             margin-top: 40px;
         }
-        .data-access a {
-            display: inline-block;
-            background-color: #D32F2F;
-            color: white;
-            padding: 10px 25px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: 0.3s;
-            margin-top: 15px;
+
+        .data-access h3 {
+            color: #1a75ff;
+            margin-bottom: 15px;
         }
-        .data-access a:hover { background-color: #a00; }
+
+        .data-access table {
+            width: 80%;
+            max-width: 400px;
+            margin: 15px auto;
+            border-collapse: collapse;
+        }
+        .data-access th, .data-access td {
+            border: 1px solid #b3e0ff;
+            padding: 10px;
+            text-align: left;
+        }
+        .data-access th {
+            background-color: #b3e0ff;
+            color: #004d99;
+            width: 40%;
+        }
+        .data-access td {
+            background-color: #fff;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        /* --- DATA STATISTIK BARU --- */
+        .statistic-box {
+            background-color: #e6f7ff; /* Warna latar belakang ringan */
+            border: 1px solid #b3e0ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            margin-bottom: 30px; /* Jarak bawah agar tidak terlalu dekat dengan elemen berikutnya */
+        }
+
+        .statistic-box h3 {
+            color: #1a75ff; /* Warna biru untuk judul */
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-align: center;
+        }
+
+        .statistic-box ul {
+            list-style-type: none; /* Hilangkan bullet point */
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: space-around; /* Sebar elemen secara merata */
+            text-align: center;
+        }
+
+        .statistic-box ul li {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .statistic-box ul li strong {
+            display: block; /* Angka di baris baru */
+            font-size: 1.8rem;
+            color: #004d99; /* Warna biru gelap untuk angka */
+            margin-top: 5px;
+        }
+
 
         
         /* --- CSS FOOTER --- */
@@ -128,18 +184,8 @@
         /* --- RESPONSIVE (MOBILE) --- */
         
 @media (max-width: 768px) {
-    .hero h1 { font-size: 2rem; }
-    .hero p { font-size: 1rem; }
-    .btn-container { flex-direction: column; gap: 10px; }
-    .btn { width: 100%; }
-    .section-padding { padding: 50px 5%; }
-    .section-title h2 { font-size: 2rem; }
-    .features-container { flex-direction: column; }
-    .service-item { flex-direction: column; }
-    .service-img, .service-content { width: 100%; height: auto; }
-    .service-img { height: 150px; }
-    .service-content { padding: 15px; }
-
+    /* ... (CSS responsive lainnya tetap) ... */
+    
     /* START PERUBAHAN MENU HAMBURGER */
     .navbar { flex-direction: row;  justify-content: space-between; }
     .menu-toggle { display: block; /* Tampilkan Tombol Hamburger */
@@ -160,6 +206,7 @@
     .menu a:last-child { border-bottom: none; }
     /* Kelas ini yang akan memunculkan menu */
     .menu.active { display: flex; }
+    
     /* END PERUBAHAN MENU HAMBURGER */
     
     /* === FIX: TATA LETAK HAK & KEWAJIBAN MENJADI 1 KOLOM DI HP === */
@@ -167,42 +214,44 @@
         grid-template-columns: 1fr; /* Paksa menjadi 1 kolom */
     }
     /* ============================================================= */
-
-    /* ==================== FOOTER RESPONSIVE FIX BARU (Opsi 1) ==================== */
     
-    /* FIX: Paksa kolom ke bawah di HP (tetap) */
-    .footer-content { 
-        flex-direction: column; 
+    /* Statistik box di mobile */
+    .statistic-box ul {
+        flex-direction: column; /* Ubah menjadi kolom */
+        gap: 10px; /* Tambah jarak vertikal */
     }
-    
-    /* FIX: Rata tengah semua konten di HP (tetap) */
-    .footer-section { 
-        width: 100%; 
-        text-align: center; 
-    }
-
-    /* Targetkan bagian Navigasi (bagian kedua di HTML) */
-    .footer-section:nth-child(2) { 
-        padding-top: 10px; /* Sedikit jarak dari bagian atas */
+    .statistic-box ul li {
+        border-bottom: 1px dotted #ccc;
         padding-bottom: 10px;
     }
+    .statistic-box ul li:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+    /* ============================================================= */
 
-    /* Terapkan tampilan horizontal ke tautan navigasi */
+    /* ==================== FOOTER RESPONSIVE FIX BARU (Opsi 1) ==================== */
+    .footer-content { flex-direction: column; }
+    .footer-section { width: 100%; text-align: center; }
+    .footer-section:nth-child(2) { padding-top: 10px; padding-bottom: 10px; }
     .footer-section:nth-child(2) a {
-        display: inline-block; /* Mengubah dari block menjadi inline-block agar bersebelahan */
-        margin: 5px 8px; /* Atur jarak antar tautan */
-        width: auto; /* Lebar sesuai konten */
-        /* Tambahkan garis pemisah vertikal opsional */
+        display: inline-block; 
+        margin: 5px 8px; 
+        width: auto;
         border-right: 1px solid #4a6d8c; 
         padding-right: 8px;
     }
-    
-    /* Hapus garis pemisah di tautan terakhir */
     .footer-section:nth-child(2) a:last-child {
         border-right: none;
         padding-right: 0;
     }
     /* ==================== END FOOTER RESPONSIVE FIX BARU (Opsi 1) ==================== */
+    
+    /* Tabel Statis di Mobile */
+    .data-access table {
+        width: 100%;
+        font-size: 0.9em;
+    }
 }
 
 
@@ -222,6 +271,7 @@
             <a href="index.html">Beranda</a>
             <a href="data-anggota.html" style="color: #D32F2F;">Keanggotaan</a>
             <a href="unit-usaha.html">Unit Usaha</a>
+            <a href="berita.html">Berita</a>
             <a href="tentang-kami.html">Tentang Kami</a>            
             <a href="galeri.html">Galeri</a>
             <a href="kontak.html">Kontak</a>
@@ -263,13 +313,56 @@
             <li><strong>Rapat Anggota Tahunan (RAT):</strong> Dilaksanakan setiap tahun pada bulan <strong>Februari</strong>.</li>
         </ul>
 
-        <div class="data-access">
-            <h3>Akses Data Keanggotaan Anda</h3>
-            <p>Untuk melihat rincian Simpanan Wajib, SHU yang diterima, dan status pemakaian unit usaha, Anda dapat mengakses sistem data kami.</p>
-            <p style="font-style: italic;">(Fitur ini sedang dalam pengembangan)</p>
-            <a href="#" onclick="alert('Fitur login data anggota belum tersedia.'); return false;">Masuk ke Portal Data Anggota</a>
+        <div class="statistic-box">
+            <h3>👥 Data Statistik Anggota Koperasi (Per Nov 2025)</h3>
+            <ul>
+                <li>
+                    Total Anggota
+                    <strong>245</strong>
+                </li>
+                <li>
+                    Anggota Laki-laki
+                    <strong>150</strong>
+                </li>
+                <li>
+                    Anggota Perempuan
+                    <strong>95</strong>
+                </li>
+            </ul>
         </div>
-    </div>
+        <div class="data-access">
+            <h3>📝 Contoh Rincian Keanggotaan (Data Statis)</h3>
+            <p>Rincian data keanggotaan lengkap (riwayat simpanan dan SHU) bersifat rahasia dan dapat diakses dengan mengunjungi langsung Kantor Koperasi pada jam operasional.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="2">Status Keanggotaan Terbaru (Contoh)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Status</th>
+                        <td>Aktif</td>
+                    </tr>
+                    <tr>
+                        <th>Simpanan Pokok</th>
+                        <td>Rp 500.000</td>
+                    </tr>
+                    <tr>
+                        <th>Total Simpanan Wajib</th>
+                        <td>Rp 150.000</td>
+                    </tr>
+                    <tr>
+                        <th>SHU Tahun Lalu (2024)</th>
+                        <td>Rp 285.000</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p style="margin-top: 20px; font-style: italic; color: #666;">Silakan hubungi bagian administrasi untuk mendapatkan detail data Anda secara akurat dan resmi.</p>
+        </div>
+        </div>
 
     <script>
         const menuToggle = document.getElementById('menuToggle');
@@ -300,9 +393,9 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h4>Hubungi Kami</h4>
-                <p><strong>Alamat:</strong> Jl. Utama Desa, Lamunti Permai, Kapuas.</p>
+                <p><strong>Alamat:</strong> Jl. Pelajar Blok C RT.003, Lamunti Permai, Kapuas.</p>
                 <p><strong>Telp:</strong> (0513) 7xxxxxx</p>
-                <p><strong>Email:</strong> koperasimerahputih@desa.id</p>
+                <p><strong>Email:</strong> kdmplamuntipermai@gmail.com</p>
                 <p><strong>Jam Operasional:</strong> Senin-Jumat (08:00 - 15:00)</p>
             </div>
             <div class="footer-section">
@@ -310,10 +403,12 @@
                 <a href="index.html">Beranda</a>
                 <a href="data-anggota.html">Keanggotaan</a>
                 <a href="unit-usaha.html">Unit Usaha</a>
+                <a href="berita.html">Berita</a>
                 <a href="tentang-kami.html">Tentang Kami</a>
                 <a href="galeri.html">Galeri Kegiatan</a>
                 <a href="kontak.html">Kontak Kami</a>
             </div>
+            
             <div class="footer-section">
                 <h4>Legalitas & Prinsip</h4>
                 <p>Badan Hukum No: AHU-0013893.AH.01.29.TAHUN 2025.</p>

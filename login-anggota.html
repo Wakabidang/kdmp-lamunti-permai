@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Anggota - KDMP Lamunti Permai</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        /* --- GAYA DASAR --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { 
+            background-color: #e8e8e8; 
+            color: #333; 
+            line-height: 1.6;
+            display: flex; /* Untuk menengahkan konten */
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* --- CONTAINER LOGIN --- */
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        .login-header {
+            margin-bottom: 25px;
+        }
+
+        .login-header h2 {
+            color: #2E7D32; /* Hijau Koperasi */
+            margin-bottom: 5px;
+        }
+
+        .login-header p {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        /* --- FORM STYLES --- */
+        .login-form input[type="text"],
+        .login-form input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .login-form input[type="text"]:focus,
+        .login-form input[type="password"]:focus {
+            border-color: #D32F2F; /* Merah Koperasi saat fokus */
+            outline: none;
+        }
+
+        .login-form button {
+            width: 100%;
+            background-color: #D32F2F; /* Merah Koperasi */
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s;
+        }
+
+        .login-form button:hover {
+            background-color: #a00;
+        }
+
+        /* --- FOOTER/LINK PENDUKUNG --- */
+        .support-links {
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+
+        .support-links a {
+            color: #2E7D32;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .support-links a:hover {
+            color: #D32F2F;
+        }
+
+        /* Tambahkan gaya untuk logo di halaman login */
+        .logo-login {
+            height: 50px;
+            margin-bottom: 15px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        
+        <img src="logo-koperasi.png" alt="Logo Koperasi" class="logo-login">
+        
+        <div class="login-header">
+            <h2>Portal Data Anggota</h2>
+            <p>Silakan masuk menggunakan NIK dan kata sandi Anda.</p>
+        </div>
+
+        <form class="login-form" action="/proses-login" method="POST">
+            <input type="text" name="nik" placeholder="Nomor Induk Koperasi (NIK)" required>
+            
+            <input type="password" name="password" placeholder="Kata Sandi" required>
+            
+            <button type="submit">Masuk</button>
+        </form>
+
+        <div class="support-links">
+            <a href="#">Lupa Kata Sandi?</a>
+            <a href="kontak.html">Bantuan & Kontak</a>
+        </div>
+    </div>
+
+</body>
+</html>

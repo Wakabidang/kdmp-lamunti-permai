@@ -53,58 +53,55 @@
             border-bottom: 3px solid #D32F2F; 
             padding-bottom: 10px; 
             text-align: center; 
-            font-size: 2rem;
+            font-size: 2.5rem;
         }
 
-        /* --- GRID UNIT USAHA --- */
+        /* UNIT CARD GRID */
         .unit-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-top: 30px;
         }
-
         .unit-card {
-            background: #fff;
+            background: #f9f9f9;
+            padding: 30px;
             border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             text-align: center;
-            border-top: 5px solid; /* Placeholder for color coding */
+            border-top: 5px solid #2E7D32; /* Default border color */
+            transition: all 0.3s ease;
         }
-
         .unit-card:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
-
         .unit-icon {
-            font-size: 3rem;
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-
-        .unit-info {
-            padding: 15px;
-        }
-
-        .unit-info h2 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: #333;
-            border: none;
-            padding: 0;
-            text-align: center;
-        }
-
-        .unit-info p {
-            color: #666;
+            font-size: 3.5rem;
             margin-bottom: 15px;
-            font-size: 0.95rem;
-            min-height: 50px; /* Menjaga tinggi deskripsi agar seragam */
+            display: block;
+            color: #2E7D32; /* Default icon color */
         }
-
+        .unit-card h2 {
+            color: #D32F2F;
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+        }
+        .unit-card ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            margin-top: 15px;
+            font-size: 0.95em;
+        }
+        .unit-card ul li {
+            padding: 5px 0;
+            border-bottom: 1px dotted #eee;
+            color: #555;
+        }
+        .unit-card ul li:last-child {
+            border-bottom: none;
+        }
         .unit-link {
             display: inline-block;
             background-color: #D32F2F;
@@ -117,21 +114,16 @@
             margin-bottom: 20px;
             transition: background-color 0.3s;
         }
-
         .unit-link:hover {
             background-color: #a00;
         }
-
         /* Color Coding */
         .card-lpg { border-color: #FF9800; }
         .card-lpg .unit-icon { color: #FF9800; }
-        
         .card-tani { border-color: #4CAF50; }
         .card-tani .unit-icon { color: #4CAF50; }
-        
         .card-ppob { border-color: #03A9F4; }
         .card-ppob .unit-icon { color: #03A9F4; }
-
 
         /* --- CSS FOOTER --- */
         .footer { background-color: #2c3e50; color: #ecf0f1; padding: 40px 5%; margin-top: 50px; font-size: 0.9rem; }
@@ -142,88 +134,43 @@
         .footer-section a:hover { color: #2E7D32; }
         .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #4a6d8c; margin-top: 20px; font-size: 0.8rem; }
         
-        /* --- FOOTER KOREKSI SPASI KONTAK --- */
-        .footer-section p {
-            margin-bottom: 5px; 
-        }
-
-        /* --- RESPONSIVE UNTUK MOBILE --- */
+        /* KOREKSI SPASI FOOTER BARU */
+        .footer-section p { margin-bottom: 5px; }
         
-@media (max-width: 768px) {
-    .container { padding: 20px; margin-top: 80px; } /* Sesuaikan container untuk HP */
-
-    /* START PERUBAHAN MENU HAMBURGER */
-    .navbar { flex-direction: row;  justify-content: space-between; }
-    .menu-toggle { display: block; /* Tampilkan Tombol Hamburger */
-    }
-    .menu { 
-        display: none; /* SEMBUNYIKAN MENU SECARA DEFAULT */
-        flex-direction: column; 
-        width: 100%;
-        background-color: #fff;
-        box-shadow: 0 5px 5px rgba(0,0,0,0.05);
-        position: absolute;
-        top: 60px; /* Jarak dari Navbar */
-        left: 0;
-        padding: 10px 0;
-    }
-    .menu a { margin: 0; padding: 10px 20px; border-bottom: 1px solid #eee; color: #333; /* Pastikan warna teks menu di HP */
-    }
-    .menu a:last-child { border-bottom: none; }
-    /* Kelas ini yang akan memunculkan menu */
-    .menu.active { display: flex; }
-    /* END PERUBAHAN MENU HAMBURGER */
-    
-    /* === FIX BARU: Perbaiki posisi kotak unit usaha di HP agar center === */
-    .unit-grid {
-        grid-template-columns: 1fr; /* Paksa satu kolom penuh */
-        justify-items: center; /* Pusatkan item (kartu) dalam grid track */
-        gap: 25px; /* Sesuaikan jarak antar kartu */
-    }
-    /* Opsional: Berikan lebar yang lebih spesifik pada kartu agar lebih rapi */
-    .unit-card {
-        width: 90%; 
-        max-width: 400px;
-    }
-    /* =================================================================== */
-
-    /* ==================== FOOTER RESPONSIVE FIX BARU (Opsi 1) ==================== */
-    
-    /* FIX: Paksa kolom ke bawah di HP (tetap) */
-    .footer-content { 
-        flex-direction: column; 
-    }
-    
-    /* FIX: Rata tengah semua konten di HP (tetap) */
-    .footer-section { 
-        width: 100%; 
-        text-align: center; 
-    }
-
-    /* Targetkan bagian Navigasi (bagian kedua di HTML) */
-    .footer-section:nth-child(2) { 
-        padding-top: 10px; /* Sedikit jarak dari bagian atas */
-        padding-bottom: 10px;
-    }
-
-    /* Terapkan tampilan horizontal ke tautan navigasi */
-    .footer-section:nth-child(2) a {
-        display: inline-block; /* Mengubah dari block menjadi inline-block agar bersebelahan */
-        margin: 5px 8px; /* Atur jarak antar tautan */
-        width: auto; /* Lebar sesuai konten */
-        /* Tambahkan garis pemisah vertikal opsional */
-        border-right: 1px solid #4a6d8c; 
-        padding-right: 8px;
-    }
-    
-    /* Hapus garis pemisah di tautan terakhir */
-    .footer-section:nth-child(2) a:last-child {
-        border-right: none;
-        padding-right: 0;
-    }
-    /* ==================== END FOOTER RESPONSIVE FIX BARU (Opsi 1) ==================== */
-}
-
+        /* MEDIA QUERIES */
+        @media (max-width: 768px) {
+            .container { margin-top: 80px; padding: 20px; }
+            h1 { font-size: 2rem; }
+            .unit-card { padding: 20px; }
+            /* START PERUBAHAN MENU HAMBURGER */
+            .navbar { flex-direction: row;  justify-content: space-between; }
+            .menu-toggle { display: block; }
+            .menu { 
+                display: none; 
+                flex-direction: column; 
+                width: 100%;
+                background-color: #fff;
+                box-shadow: 0 5px 5px rgba(0,0,0,0.05);
+                position: absolute;
+                top: 60px;
+                left: 0;
+                padding: 10px 0;
+            }
+            .menu a { margin: 0; padding: 10px 20px; border-bottom: 1px solid #eee; color: #333;}
+            .menu a:last-child { border-bottom: none; }
+            .menu.active { display: flex; }
+            .footer-content { flex-direction: column; }
+            .footer-section { width: 100%; text-align: center; }
+            .footer-section:nth-child(2) { padding-top: 10px; padding-bottom: 10px; }
+            .footer-section:nth-child(2) a {
+                display: inline-block; margin: 5px 8px; width: auto; 
+                border-right: 1px solid #4a6d8c; padding-right: 8px;
+            }
+            .footer-section:nth-child(2) a:last-child {
+                border-right: none; padding-right: 0;
+            }
+            /* END PERUBAHAN MENU HAMBURGER */
+        }
     </style>
 </head>
 <body>
@@ -233,13 +180,12 @@
             <img src="logo-koperasi.png" alt="Logo" class="logo-img">
             KDMP <span>Lamunti Permai</span>
         </div>
-        
-        <div class="menu-toggle" id="menuToggle">☰</div>
-        
-        <div class="menu" id="mainMenu">
-            <a href="index.html">Beranda</a>
+        <div class="menu-toggle" id="menuToggle">☰</div>  
+        <div class="menu" id="mainMenu">                 
+            <a href="index.html">Beranda</a>  
             <a href="data-anggota.html">Keanggotaan</a>
-            <a href="unit-usaha.html" style="color: #D32F2F;">Unit Usaha</a>
+            <a href="#" style="color: #D32F2F;">Unit Usaha</a>
+            <a href="berita.html">Berita</a>            
             <a href="tentang-kami.html">Tentang Kami</a>
             <a href="galeri.html">Galeri</a>
             <a href="kontak.html">Kontak</a>
@@ -247,51 +193,60 @@
     </nav>
 
     <div class="container">
-        <h1>🛠️ Unit Usaha Koperasi</h1>
-        <p style="text-align: center; margin-bottom: 30px; color: #555;">KDMP Lamunti Permai mengelola tiga unit usaha utama yang bertujuan untuk melayani kebutuhan pokok dan mendukung ekonomi anggota di Lamunti Permai.</p>
-
+        <h1>Unit Usaha Koperasi Kami</h1>
+        <p style="text-align: center; color: #555;">Kami berupaya keras untuk menyediakan berbagai layanan yang bermanfaat langsung bagi anggota dan masyarakat desa.</p>
+        
         <div class="unit-grid">
-            
             <div class="unit-card card-lpg">
-                <div class="unit-icon">🔥</div>
-                <div class="unit-info">
-                    <h2>Gerai Gas LPG</h2>
-                    <p>Menyediakan Gas LPG 3 Kg Subsidi dan Non-Subsidi untuk menjamin ketersediaan energi rumah tangga dengan harga HET.</p>
-                    <a href="gerai-lpg.html" class="unit-link">Lihat Detail</a>
-                </div>
+                <span class="unit-icon">🔥</span>
+                <h2>Gerai Gas LPG (Pangkalan Resmi)</h2>
+                <p>Unit penyalur Gas LPG bersubsidi dan non-subsidi untuk rumah tangga dan UMKM. Menjamin ketersediaan dan harga sesuai HET.</p>
+                <ul>
+                    <li>LPG 3Kg (Bersubsidi)</li>
+                    <li>Bright Gas 5.5Kg</li>
+                    <li>Layanan Cepat dan Terpercaya</li>
+                </ul>
+                <a href="gerai-lpg.html" class="unit-link">Selengkapnya →</a>
             </div>
 
             <div class="unit-card card-tani">
-                <div class="unit-icon">🌾</div>
-                <div class="unit-info">
-                    <h2>Toko Tani & Sembako</h2>
-                    <p>Menjual sarana produksi pertanian (pupuk, benih) dan kebutuhan pokok harian (sembako) dengan harga kompetitif.</p>
-                    <a href="toko-tani.html" class="unit-link">Lihat Detail</a>
-                </div>
+                <span class="unit-icon">🌾</span>
+                <h2>Toko Tani & Sembako</h2>
+                <p>Menyediakan sarana produksi pertanian (saprotan), pupuk, bibit, serta kebutuhan pokok (sembako) dengan harga kompetitif.</p>
+                <ul>
+                    <li>Pupuk Non-Subsidi dan Bibit</li>
+                    <li>Sistem Bayar Saat Panen (Yarnen)</li>
+                    <li>Kebutuhan Sembako Anggota</li>
+                </ul>
+                <a href="toko-tani.html" class="unit-link">Selengkapnya →</a>
             </div>
 
             <div class="unit-card card-ppob">
-                <div class="unit-icon">💳</div>
-                <div class="unit-info">
-                    <h2>PPOB & Jasa Keuangan</h2>
-                    <p>Layanan pembayaran tagihan online (listrik, BPJS, PDAM) dan jasa transfer uang tunai untuk kemudahan transaksi anggota.</p>
-                    <a href="ppob-jasa.html" class="unit-link">Lihat Detail</a>
-                </div>
+                <span class="unit-icon">💳</span>
+                <h2>PPOB & Jasa Keuangan</h2>
+                <p>Layanan pembayaran daring (online) dan jasa keagenan keuangan untuk mempermudah transaksi anggota di desa.</p>
+                <ul>
+                    <li>Pembayaran Listrik, PDAM, BPJS</li>
+                    <li>Token Listrik & Pulsa Seluler</li>
+                    <li>Layanan Transfer Uang</li>
+                </ul>
+                <a href="ppob-jasa.html" class="unit-link">Selengkapnya →</a>
             </div>
-
         </div>
-        
+
     </div>
 
     <script>
+        // --- FUNGSI MENU TOGGLE BARU & PENUTUP OTOMATIS ---
+
         const menuToggle = document.getElementById('menuToggle');
         const mainMenu = document.getElementById('mainMenu');
-        const menuLinks = mainMenu.querySelectorAll('a'); 
+        const menuLinks = mainMenu.querySelectorAll('a');
 
         // 1. Event Listener untuk Tombol Toggle (Buka/Tutup Menu)
         menuToggle.addEventListener('click', function() {
-            mainMenu.classList.toggle('active'); // Toggle class 'active' untuk menampilkan/menyembunyikan menu
-            menuToggle.classList.toggle('open'); // Toggle class 'open' untuk animasi ikon hamburger
+            mainMenu.classList.toggle('active');
+            menuToggle.classList.toggle('open');
         });
 
         // 2. Event Listener untuk Menutup Menu Setelah Tautan Diklik
@@ -309,9 +264,9 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h4>Hubungi Kami</h4>
-                <p><strong>Alamat:</strong> Jl. Utama Desa, Lamunti Permai, Kapuas.</p>
+                <p><strong>Alamat:</strong> Jl. Pelajar Blok C RT.003, Lamunti Permai, Kapuas.</p>
                 <p><strong>Telp:</strong> (0513) 7xxxxxx</p>
-                <p><strong>Email:</strong> koperasimerahputih@desa.id</p>
+                <p><strong>Email:</strong> kdmplamuntipermai@gmail.com</p>
                 <p><strong>Jam Operasional:</strong> Senin-Jumat (08:00 - 15:00)</p>
             </div>
             <div class="footer-section">
@@ -319,10 +274,12 @@
                 <a href="index.html">Beranda</a>
                 <a href="data-anggota.html">Keanggotaan</a>
                 <a href="unit-usaha.html">Unit Usaha</a>
+                <a href="berita.html">Berita</a>
                 <a href="tentang-kami.html">Tentang Kami</a>
                 <a href="galeri.html">Galeri Kegiatan</a>
                 <a href="kontak.html">Kontak Kami</a>
             </div>
+            
             <div class="footer-section">
                 <h4>Legalitas & Prinsip</h4>
                 <p>Badan Hukum No: AHU-0013893.AH.01.29.TAHUN 2025.</p>

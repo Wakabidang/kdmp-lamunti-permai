@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berita & Kegiatan - KDMP Lamunti Permai</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        /* --- GAYA DASAR (SAMA DENGAN INDEX.HTML) --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #f4f4f4; color: #333; line-height: 1.6; }
+        p { margin-bottom: 15px; }
+
+        /* --- NAVBAR (SAMA DENGAN INDEX.HTML) --- */
+        .navbar {
+            background-color: #fff; display: flex; justify-content: space-between; align-items: center;
+            padding: 10px 5%; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+        }
+        .logo { display: flex; align-items: center; gap: 10px; font-weight: bold; color: #D32F2F; line-height: 1.2; }
+        .logo span { color: #2E7D32; }
+        .logo-img { height: 40px; width: auto; }
+        .menu a.nav-link-item, .dropdown-menu-item { 
+            text-decoration: none; color: #333; margin-left: 20px; font-weight: 500; transition: 0.3s;
+            display: inline-block; 
+        }
+        .menu a:hover { color: #D32F2F; }
+        
+        /* KODE CSS DROPDOWN (DIHAPUS KARENA TIDAK DIGUNAKAN) */
+        /* --- MENU DROPDOWN ASLI SUDAH DIHAPUS, MENYISAKAN HANYA STYLE UTAMA MENU --- */
+        .menu-toggle { display: none; font-size: 2rem; cursor: pointer; color: #D32F2F; order: 2; transition: transform 0.3s ease; }
+        .menu-toggle.open { transform: rotate(90deg); color: #2E7D32; }
+
+
+        /* --- CSS KHUSUS HALAMAN BERITA --- */
+        .page-header {
+            background-color: #388e3c; /* Warna hijau Koperasi */
+            color: white; padding: 20px 5% 15px; text-align: center;
+            margin-top: 60px; /* Jarak dari fixed navbar */
+        }
+        .page-header h1 { font-size: 2.5rem; margin-bottom: 5px; }
+        .page-header p { font-size: 1.1rem; opacity: 0.8; }
+
+        /* UBAH: main-content tanpa flex/sidebar */
+        .main-content {
+            padding: 50px 5%; max-width: 1200px; margin: 0 auto;
+        }
+
+        /* UBAH: news-list mengambil 100% lebar */
+        .news-list {
+            width: 100%; 
+        }
+        /* HAPUS: Style untuk .sidebar */
+
+
+        /* CARD BERITA */
+        .news-card {
+            background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 25px; display: flex; overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .news-img-container {
+            width: 35%; /* Gambar ambil 35% lebar */
+            overflow: hidden;
+        }
+        .news-img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+        .news-content {
+            width: 65%; padding: 20px;
+        }
+        .news-content .category {
+            display: inline-block; background-color: #D32F2F; color: white;
+            padding: 4px 10px; font-size: 0.8em; border-radius: 4px; margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .news-content h3 {
+            font-size: 1.4rem; margin-bottom: 10px; color: #333;
+        }
+        .news-content p {
+            font-size: 0.95rem; color: #666; margin-bottom: 15px;
+        }
+        .news-content .meta {
+            font-size: 0.8em; color: #999;
+        }
+        
+        /* HAPUS: Style SIDEBAR KATEGORI & CARI BERITA */
+
+        /* PAGINATION */
+        .pagination {
+            text-align: center; padding: 20px 0;
+        }
+        .pagination a {
+            display: inline-block; padding: 10px 15px; margin: 0 5px;
+            text-decoration: none; border: 1px solid #ccc; border-radius: 5px;
+            color: #333; background-color: white; transition: 0.3s;
+        }
+        .pagination a:hover, .pagination a.active {
+            background-color: #D32F2F; color: white; border-color: #D32F2F;
+        }
+
+        /* --- MEDIA QUERIES (SAMA DENGAN INDEX.HTML) --- */
+        @media (max-width: 768px) {
+            /* Navbar Mobile */
+            .navbar { flex-direction: row; justify-content: space-between; }
+            .menu-toggle { display: block; }
+            .menu { 
+                display: none; flex-direction: column; width: 100%; background-color: #fff;
+                box-shadow: 0 5px 5px rgba(0,0,0,0.05); position: absolute; top: 60px; left: 0; padding: 10px 0;
+            }
+            .menu a { margin: 0; width: 100%; display: block; }
+            .menu a.nav-link-item { padding: 10px 20px; border-bottom: 1px solid #eee; color: #333; }
+            .menu.active { display: flex; }
+
+            /* Konten Berita Mobile */
+            .main-content { padding-top: 30px; }
+            /* HAPUS: Sidebar order-1 */
+            .news-card { flex-direction: column; }
+            .news-img-container { width: 100%; height: 200px; }
+            .news-content { width: 100%; padding: 15px; }
+            .news-content h3 { font-size: 1.2rem; }
+            .news-content p { font-size: 0.9rem; }
+            .page-header { padding: 100px 5% 30px; }
+        }
+
+        /* --- FOOTER (SAMA DENGAN INDEX.HTML) --- */
+        footer { background-color: #2c3e50; color: #ecf0f1; padding: 40px 5%; margin-top: 50px; font-size: 0.9rem; }
+        .footer-content { display: flex; justify-content: space-between; max-width: 1100px; margin: 0 auto; flex-wrap: wrap; }
+        .footer-section { width: 30%; min-width: 250px; margin-bottom: 20px; }
+        .footer-section h4 { color: #D32F2F; margin-bottom: 15px; border-bottom: 1px solid #4a6d8c; padding-bottom: 5px; }
+        .footer-section a { color: #ecf0f1; text-decoration: none; display: block; margin-bottom: 5px; transition: color 0.3s; }
+        .footer-section a:hover { color: #2E7D32; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #4a6d8c; margin-top: 20px; font-size: 0.8rem; }
+        .footer-section p { margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <img src="logo-koperasi.png" alt="Logo" class="logo-img">
+            KDMP <span>Lamunti Permai</span>
+        </div>
+        <div class="menu-toggle" id="menuToggle">☰</div>  
+        
+        <div class="menu" id="mainMenu">                 
+            <a href="index.html" class="nav-link-item">Beranda</a>  
+            <a href="data-anggota.html" class="nav-link-item">Keanggotaan</a>
+            <a href="unit-usaha.html" class="nav-link-item">Unit Usaha</a>
+
+<a href="berita.html" class="nav-link-item active-nav-item" style="font-weight: bold; color: #D32F2F;">Berita</a>     
+
+            <a href="tentang-kami.html" class="nav-link-item">Tentang Kami</a>
+            <a href="galeri.html" class="nav-link-item">Galeri</a>            
+            <a href="kontak.html" class="nav-link-item">Kontak</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1 id="pageTitle">📢 Semua Berita Koperasi</h1>
+        <p id="pageSubtitle">Informasi terbaru seputar kegiatan, laporan, dan unit usaha KDMP Lamunti Permai.</p>
+    </header>
+
+    <div class="main-content">
+        
+        <div class="news-list">
+            <a href="https://docs.google.com/document/d/e/2PACX-1vScmvCjrzV8XsBxeYertlwJ4KbdYl35mbsnpB98fMjm9Y92YB8yHPpzIwjdFmY0t1tRp1hvJWId_UC8/pub" class="news-card">
+                <div class="news-img-container">
+                    <img src="berita/berita6.jpg" alt="Rapat Tinjauan Keuangan" class="news-img">
+                </div>
+                <div class="news-content">
+                    <span class="category">Berita KDMP Lamunti Permai</span>
+                    <h3>Akselerasi Bisnis Koperasi Desa Merah Putih Lamunti Permai Business Assistant Ibu Normila Ningsih Soroti Aset Tanah dan Percepatan Musdesus</h3>
+                    
+                </div>
+            </a>
+
+            <a href="https://docs.google.com/document/d/e/2PACX-1vTmmuVhhaUMlOTP3zrk3SHr1uBqFlEZ5YwW132S0P-3p87mZntKC61aVhUHClM9nyUDmWOe945XQ9xA/pub" class="news-card" data-kategori="aset">
+                <div class="news-img-container">
+                    <img src="berita/berita7.jpg" alt="Bakti Sosial" class="news-img">
+                </div>
+                <div class="news-content">
+                    <span class="category">Berita KDMP Lamunti Permai</span>
+                    <h3>Komitmen Kuat Desa Kepala Desa Lamunti Permai Turun Langsung Awasi Pemasangan Patok Tanah Hibah Gerai Koperasi Desa Merah Putih Lamunti Permai</h3>
+                    
+                </div>
+            </a>
+            <a href="https://docs.google.com/document/d/e/2PACX-1vQQsHvvN9DsIrEto2wg_0ccNWJft8sV9n_eDH0DckxejyIwEBN4sYoFTKQlNjW17YutBGYNZ9zQ9Evg/pub" class="news-card" data-kategori="aset">
+                <div class="news-img-container">
+                    <img src="berita/berita8.jpg" alt="Promo Pupuk" class="news-img">
+                </div>
+                <div class="news-content">
+                    <span class="category">Berita KDMP Lamunti Permai</span>
+                    <h3>Kodim 1011 Kuala Kapuas Melakukan Kegiatan Pengambilan Foto Udara di Lokasi Tempat Pembangunan Gerai KDMP Lamunti Permai</h3>
+                    
+                </div>
+            
+            </a>
+            <a href="https://docs.google.com/document/d/e/2PACX-1vTyKHwGUidkHrwg1ONZoCYxkyyXKGPVSrhsxESyiYdBNPVxIccW7tQUwtRW125YKJsI1qe-AlMu8iPS/pub" class="news-card" data-kategori="administrasi">
+                <div class="news-img-container">
+                    <img src="berita/berita9.jpg" alt="Promo Pupuk" class="news-img">
+                </div>
+                <div class="news-content">
+                    <span class="category">Berita KDMP Lamunti Permai</span>
+                    <h3>Musdesus Desa Lamunti Permai Setujui Rekomendasi Pembiayaan Koperasi Desa Merah Putih Lamunti Permai</h3>
+                    
+                </div>
+            
+            </a>
+            <a href="https://docs.google.com/document/d/e/2PACX-1vRSmwdjuc7ufMvpfzKz61NDUc6DYrxwKaBapABqZ6JO-sDqZsj9m0-UodIdKl77Ubnumgjibv-R1xui/pub" class="news-card" data-kategori="usaha">
+                <div class="news-img-container">
+                    <img src="berita/berita10.jpg" alt="Promo Pupuk" class="news-img">
+                </div>
+                <div class="news-content">
+                    <span class="category">Berita KDMP Lamunti Permai</span>
+                    <h3>Disperindagkop dan UKM Kapuas Gelar Pelatihan Peningkatan Kompetensi SDM KDKMP se Kabupaten Kapuas</h3>
+                    
+                </div>
+
+            
+            </a>
+            <div class="pagination">
+                <a href="berita.html">◀◀ Kembali</a>
+                <a href="berita.html">1</a>
+                <a href="berita-2.html" class="active">2</a>
+                <a href="berita-3.html">3</a>
+                <a href="berita-3.html">Berikut ▶▶</a>
+            </div>
+            
+        </div>
+
+        </div>
+
+<script>
+    // --- LOGIKA UTAMA HALAMAN BERITA ---
+
+    // Fungsi untuk mendapatkan parameter dari URL
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
+
+    // Fungsi untuk mengubah tampilan halaman berdasarkan kategori
+    function filterNewsByCategory() {
+        var activeCategory = getUrlParameter('kategori') || 'semua';
+        var newsCards = document.querySelectorAll('.news-card');
+        var pageTitle = document.getElementById('pageTitle');
+        var pageSubtitle = document.getElementById('pageSubtitle');
+        var links = document.querySelectorAll('#sidebarCategoryList a, #kategoriDropdown a');
+
+        var categoryMap = {
+            'semua': { title: '📢 Semua Berita Koperasi', subtitle: 'Informasi terbaru seputar kegiatan, laporan, dan unit usaha KDMP Lamunti Permai.' },
+            'sinergi': { title: '🤝 Sinergi & Kerjasama', subtitle: 'Hubungan, kerjasama, atau kunjungan kerja antara KDMP Lamunti Permai dengan pihak eksternal, baik koperasi lain, pemerintah, maupun perbankan.' },
+            'administrasi': { title: '🏛️ Administrasi & Tata Kelola', subtitle: 'Kegiatan internal berkaitan dengan pengambilan keputusan, persetujuan, atau rapat-rapat penting mengenai operasional dan pembiayaan.' },
+            'aset': { title: '🏗️ Aset & Infrastruktur', subtitle: 'Berita yang berhubungan dengan pembangunan fisik, aset usaha, dan upaya desa untuk mendukung pembangunan infrastruktur KDMP Lamunti Permai.' },
+            'kegiatan': { title: '🧑‍🤝‍🧑 Kegiatan Sosial', subtitle: 'Kegiatan desa yang bersifat sosial dan seremonial yang melibatkan KDMP Lamunti Permai atau Desa Lamunti Permai secara umum.' }
+        };
+
+        // 1. Terapkan Filter Berita (Dipertahankan untuk jaga-jaga jika URL dengan kategori masih digunakan)
+        newsCards.forEach(card => {
+            var cardCategory = card.getAttribute('data-kategori');
+            if (activeCategory === 'semua' || cardCategory === activeCategory) {
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // 2. Perbarui Judul Halaman
+        var info = categoryMap[activeCategory] || categoryMap['semua'];
+        pageTitle.textContent = info.title;
+        pageSubtitle.textContent = info.subtitle;
+
+        // 3. Hapus Logika untuk menandai link aktif (Karena link kategori telah dihapus)
+        /*
+        links.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('data-kategori') === activeCategory) {
+                link.classList.add('active');
+            }
+        });
+        */
+    }
+
+    // --- FUNGSI NAVBAR (SAMA DENGAN INDEX.HTML) ---
+    const menuToggle = document.getElementById('menuToggle');
+    const mainMenu = document.getElementById('mainMenu');
+    const menuItems = mainMenu.querySelectorAll('a, .dropdown-menu-item');
+
+    menuToggle.addEventListener('click', function() {
+        mainMenu.classList.toggle('active');
+        menuToggle.classList.toggle('open');
+    });
+
+    menuItems.forEach(item => {
+        if (item.tagName === 'A' && !item.closest('.dropdown-content')) {
+             item.addEventListener('click', () => {
+                if (window.innerWidth <= 768 && mainMenu.classList.contains('active')) {
+                    mainMenu.classList.remove('active');
+                    menuToggle.classList.remove('open');
+                }
+            });
+        }
+    });
+
+    // Jalankan fungsi filter saat halaman dimuat
+    window.onload = filterNewsByCategory;
+</script>
+   
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Hubungi Kami</h4>
+                <p><strong>Alamat:</strong> Jl. Pelajar Blok C RT.003, Lamunti Permai, Kapuas.</p>
+                <p><strong>Telp:</strong> (0513) 7xxxxxx</p>
+                <p><strong>Email:</strong> kdmplamuntipermai@gmail.com</p>
+                <p><strong>Jam Operasional:</strong> Senin-Jumat (08:00 - 15:00)</p>
+            </div>
+            <div class="footer-section">
+                <h4>Navigasi</h4>
+                <a href="index.html">Beranda</a>
+                <a href="data-anggota.html">Keanggotaan</a>
+                <a href="unit-usaha.html">Unit Usaha</a>
+                <a href="berita.html">Berita</a>
+                <a href="tentang-kami.html">Tentang Kami</a>
+                <a href="galeri.html">Galeri Kegiatan</a>
+                <a href="kontak.html">Kontak Kami</a>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Legalitas & Prinsip</h4>
+                <p>Badan Hukum No: AHU-0013893.AH.01.29.TAHUN 2025.</p>
+                <p>Kami menjunjung tinggi prinsip Koperasi: <strong>Kekeluargaan</strong>, <strong>Transparansi</strong>, dan <strong>Akuntabilitas</strong> demi kesejahteraan bersama.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 Koperasi Desa Merah Putih Lamunti Permai. Hak Cipta Dilindungi.
+        </div>
+    </footer>
+
+</body>
+</html>
